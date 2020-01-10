@@ -95,7 +95,8 @@ public class BoardGUI extends JPanel implements KeyListener, ActionListener{
 			
 			//slide right
 			case 39:
-				data.slideRight();
+			//	data.slideRight();
+				data.combineRight();
 				break;
 				
 			case 37: //left

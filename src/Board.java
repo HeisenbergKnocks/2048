@@ -68,8 +68,15 @@ public class Board {
 
 	public void populateOne() {
 
-			
-
+		//is there an empty spot?
+		//for randomness, generate a row and column
+		//check if that tile is empty, if it is NOT empty
+		//generate another set of row and column
+		//what happens if the entire board is full??!!
+		
+		
+		
+		
 	}
 
 	/*
@@ -293,9 +300,21 @@ public class Board {
 	 * 
 	 * Notice that the left element is zeroed out.
 	 */
-
+	
+	
 	public void combineRight() {
 		
+		for(int i = 0; i < board.length; i++){
+			for(int j = i+1; j < board.length; j++){
+				if(board[i][i] == board[i][j]){
+					board[i][j] = board[i][j] * 2;
+					board[i][i] = 0;
+					
+				}
+				
+			}
+			
+		}
 	}
 
 	/*
