@@ -95,20 +95,23 @@ public class BoardGUI extends JPanel implements KeyListener, ActionListener{
 			
 			//slide right
 			case 39:
-			//	data.slideRight();
 				data.combineRight();
+				data.slideRight();
 				break;
 				
-			case 37: //left
+			case 37: //left\
+				data.combineLeft();
 				data.slideLeft();
 				break;
 				
 			case 38: //up
 				//what to do if keyCode is 38?
+				data.combineUp();
 				data.slideUp();
 				break;
 				
 			case 40: //down
+				data.combineDown();
 				data.slideDown();
 				break;
 		}

@@ -304,14 +304,20 @@ public class Board {
 	
 	public void combineRight() {
 		
-		for(int i = 0; i < board.length; i++){
-			for(int j = i+1; j < board.length; j++){
-				if(board[i][i] == board[i][j]){
-					board[i][j] = board[i][j] * 2;
-					board[i][i] = 0;
-					
+		for(int row = 0; row < board.length; row++){
+			for(int col = board[0].length-1; col >= 0; col--){
+				if(board[row][col] != 0){
+					for(int j = col-1; j >= 0; j--){
+						if(board[row][j] == board[row][col]){
+							board[row][j] = board[row][j] * 2;
+							board[row][col] = 0;
+							break;
+						}else if(board[row][j] != 0){
+							break;
+						}
+						
+					}
 				}
-				
 			}
 			
 		}
@@ -323,7 +329,23 @@ public class Board {
 	 */
 
 	public void combineLeft() {
-
+		for(int row = 0; row < board.length; row++){
+			for(int col = 0; col < board[0].length; col++){
+				if(board[row][col] != 0){
+					for(int j = col+1; j < board[0].length; j++){
+						if(board[row][j] == board[row][col]){
+							board[row][col] = board[row][j] * 2;
+							board[row][j] = 0;
+							break;
+						}else if(board[row][j] != 0){
+							break;
+						}
+						
+					}
+				}
+			}
+			
+		}
 	}
 	
 	/*
@@ -332,7 +354,27 @@ public class Board {
 	 */
 
 	public void combineUp() {
-
+		for(int row = 0; row < board.length; row++){
+			int[] z = getCol(board, row);
+			for(int col = 0; col < z.length; col++){
+				if(z[col] != 0){
+					for(int j = col+1; j < board[0].length; j++){
+						if(z[j] == z[col]){
+							z[col] = z[j] * 2;
+							z[j] = 0;
+							break;
+						}else if(z[j] != 0){
+							break;
+						}
+						
+					}
+				}
+			}
+			for(int a = 0; a < board.length; a++){
+				board[a][row] = z[a];
+			}
+			
+		}
 	}
 
 	/*
@@ -341,7 +383,27 @@ public class Board {
 	 */
 
 	public void combineDown() {
-
+		for(int row = 0; row < board.length; row++){
+			int[] z = getCol(board, row);
+			for(int col = board[0].length-1; col >= 0; col--){
+				if(board[row][col] != 0){
+					for(int j = col-1; j >= 0; j--){
+						if(z[j] == z[col]){
+							z[j] = z[j] * 2;
+							z[col] = 0;
+							break;
+						}else if(z[j] != 0){
+							break;
+						}
+						
+					}
+				}
+			}
+			for(int a = 0; a < board.length; a++){
+				board[a][row] = z[a];
+			}
+		}
+		
 	}
 
 	
@@ -355,18 +417,28 @@ public class Board {
 		//1) numbers slide to the left
 		//2) combine
 		//3) slide
+		this.slideLeft();
+		this.combineLeft();
+		this.slideLeft();
+		
 	}
 
 	public void right() {
-
+		this.slideRight();
+		this.combineRight();
+		this.slideRight();
 	}
 
 	public void up() {
-
+		this.slideUp();
+		this.combineUp();
+		this.slideUp();
 	}
 
 	public void down() {
-
+		this.slideDown();
+		this.combineDown();
+		this.slideDown();
 	}
 	
 	
