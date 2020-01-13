@@ -309,8 +309,8 @@ public class Board {
 				if(board[row][col] != 0){
 					for(int j = col-1; j >= 0; j--){
 						if(board[row][j] == board[row][col]){
-							board[row][j] = board[row][j] * 2;
-							board[row][col] = 0;
+							board[row][col] = board[row][col] * 2;
+							board[row][j] = 0;
 							break;
 						}else if(board[row][j] != 0){
 							break;
@@ -386,7 +386,7 @@ public class Board {
 		for(int row = 0; row < board.length; row++){
 			int[] z = getCol(board, row);
 			for(int col = board[0].length-1; col >= 0; col--){
-				if(board[row][col] != 0){
+				if(z[col] != 0){
 					for(int j = col-1; j >= 0; j--){
 						if(z[j] == z[col]){
 							z[j] = z[j] * 2;
