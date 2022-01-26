@@ -73,9 +73,34 @@ public class Board {
 		//check if that tile is empty, if it is NOT empty
 		//generate another set of row and column
 		//what happens if the entire board is full??!!
+		int rval = (int) (Math.random() * 10);
+		int rcol = (int) (Math.random() * 4);
+		int rrow = (int) (Math.random() * 4);
 		
+		int count = 0;
+		for(int row = 0; row < board.length; row++) {
+			for(int col = 0; col < board[0].length; col++) {
+				if(board[row][col] != 0) {
+					count++;	
+				}
+			}
+		}
 		
+		if(rval >= 9) {
+			rval = 4;	
+		} else {
+			rval = 2;
+		}
 		
+		if(count >= 16) {
+			count++;	
+		}
+		
+		if(board[rrow][rcol] == 0) {
+			board[rrow][rcol] = rval;	
+		} else {
+			populateOne();
+		}
 		
 	}
 
